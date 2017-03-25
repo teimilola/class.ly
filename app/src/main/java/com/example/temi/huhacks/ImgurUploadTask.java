@@ -94,7 +94,7 @@ public class ImgurUploadTask extends AsyncTask {
     @Override
     protected void onPostExecute(Object response) {
         String result = (String) response;
-        mCallback.getOCRCallBackResult(result);
+        mCallback.getImgurCallBackResult(result);
     }
 
 

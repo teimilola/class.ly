@@ -56,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements IOCRCallBack, Img
         mImageUrl = ""; // Image url to apply OCR API
         mLanguage = "eng"; //Language
         isOverlayRequired = true;
+
+        takePicture();
+        enableContinue();
     }
 
     private void enableContinue(){
