@@ -59,6 +59,21 @@
 			width: 50%;
 			margin: 0 auto;
 		}
+		
+		#next-page{
+			background-color: #d3d3d3;
+			padding: 14px;
+			font-size: 14px;
+			float: right;
+			border-radius: 4px;
+			-webkit-transition-duration: 0.4s; /* Safari */
+			transition-duration: 0.4s;
+		}
+
+		#next-page:hover {
+			background-color: #7e7e7e; /* Green */
+			color: white;
+		}
 	</style>
 </head>
 <body>
@@ -77,9 +92,9 @@
 	
 	<div class= "center">
 		<h2>Hi there, Karim!</h2>
+		<button id="next-page">New Class</button>
 		<p>Welcome back to Class.ly</p>
 		<h2>Upcoming Events</h2>
-		<hr>
 		<table>
 			<tr> <td>Calculus Exam</td> <td>Calculus</td> <td>4 days</td> </tr>
 			<tr> <td>Quiz on Derivatives</td> <td>Calculus</td> <td>11 days</td> </tr>
@@ -87,11 +102,16 @@
 		</table>
 		
 		<h2>Classes</h2>
-		<hr>
 		<table>
 			<tr> <td>Calculus</td> <td>Fall 2017</td> </tr>
 			<tr> <td>English</td> <td>Spring 2016</td> </tr>
 		</table>
 	</div>
+	
+	<script>
+	document.getElementById("next-page").onclick = function () {
+					location.href = "index.html";
+			};
+	</script>
 </body>
 </html>
