@@ -16,6 +16,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <data android:scheme="YOUR_APP_IDENTIFIER" android:host="https://github.com/teimilola/class.ly" />
             </intent-filter>
         </activity>
         <provider

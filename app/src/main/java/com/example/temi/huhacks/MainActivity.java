@@ -18,14 +18,14 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements IOCRCallBack{
+public class MainActivity extends AppCompatActivity implements IOCRCallBack, ImgurCallback{
 
-    private String mAPiKey = "helloworld"; //TODO Add your own Registered API key
+    private String mAPiKey; //OCR api key
     private boolean isOverlayRequired;
     private String mImageUrl;
     private String mLanguage;
-    private TextView mTxtResult;
     private IOCRCallBack mIOCRCallBack;
+    private ImgurCallback mImgurCallback;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private ImageView mImageView;
     private TextView mTvWait;
@@ -39,9 +39,11 @@ public class MainActivity extends AppCompatActivity implements IOCRCallBack{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mIOCRCallBack = this;
+        mImgurCallback = this;
 
         mPhotoTaken = false;
         mCurrentPhotoPath = "";
+        mAPiKey  = "f2e91b2f3e88957";
 
         //Find views
         mImageView = (ImageView)findViewById(R.id.ivPhoto);
@@ -51,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements IOCRCallBack{
         //Set continue button disabled by default
         mBtnContinue.setEnabled(false);
 
-        mImageUrl = "http://dl.a9t9.com/blog/ocr-online/screenshot.jpg"; // Image url to apply OCR API
+        mImageUrl = ""; // Image url to apply OCR API
         mLanguage = "eng"; //Language
         isOverlayRequired = true;
     }
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements IOCRCallBack{
             mBtnContinue.setEnabled(true);
         }
     }
+
 
     private File createImageFile() throws IOException {
         // Create an image file name
@@ -115,6 +118,10 @@ public class MainActivity extends AppCompatActivity implements IOCRCallBack{
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             mImageView.setImageBitmap(imageBitmap);
+            Uri URI = Uri.parse( extras.getString(MediaStore.EXTRA_OUTPUT) );
+            //Upload image to imgur
+            ImgurUploadTask imgurUploadTask = new ImgurUploadTask(URI, MainActivity.this, mImgurCallback);
+            imgurUploadTask.execute();
         }
     }
 
@@ -123,8 +130,20 @@ public class MainActivity extends AppCompatActivity implements IOCRCallBack{
         oCRAsyncTask.execute();
     }
 
+
     @Override
     public void getOCRCallBackResult(String response) {
-        mTxtResult.setText(response);
+        mTvWait.setText("Done");
+        parseOCRResponse(response);
+    }
+
+    @Override
+    public void getImgurCallBackResult(String response) {
+        //Sample url: http://imgur.com/P5IrmFo
+        mImageUrl = "http://imgur.com/" + response;
+    }
+
+    private void parseOCRResponse(String response){
+        //TODO
     }
 }
