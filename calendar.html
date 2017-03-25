@@ -2,6 +2,30 @@
 <html>
 <head>
 
+	<title>Classly</title>
+	<script src = "jquery-3.2.0.min.js"></script>
+	<script src = "jquery.mobile-1.4.5.min.js"></script>
+	<script src = "jquery-ui.min.js"></script>
+	<script src = "dropdown.js"></script>
+	<link rel ="stylesheet" type="text/css" href ="dropdown.css"/>
+	
+	<style>
+		.headerdesign {
+			background-color:Black;
+			margin:0;
+			padding:0;
+			margin-top: 0;
+			margin-bottom:5px;
+		}
+		
+		.headerdesign p {
+			color:white;
+			font-size:30px;
+			text-align:center;
+			margin-top:0px;
+		}
+	</style>
+
 <style>
 * {box-sizing:border-box;}
 ul {list-style-type: none;}
@@ -31,6 +55,7 @@ body {font-family: Verdana,sans-serif;}
     padding: 70px 25px;
     width: 100%;
     background: #1abc9c;
+	margin-top:0px;
 }
 
 .month ul {
@@ -106,6 +131,19 @@ body {font-family: Verdana,sans-serif;}
 </style>
 </head>
 <body>
+
+<div class = "headerdesign">
+	<div class="dropdown">
+	  <button onclick="myFunction()" class="dropbtn">Menu</button>
+	  <div id="myDropdown" class="dropdown-content">
+		<a href="home.html">Home</a>
+		<a href="calendar.html">Calendar</a>
+		<a href="#settings">Settings</a>
+		<a href="#user">User</a>
+	  </div>
+	</div>
+    <p>Class.ly</p>
+</div>
 
 <div class="month">      
   <ul>
